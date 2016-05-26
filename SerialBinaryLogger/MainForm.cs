@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Ports;
+using System.Reflection;
 
 namespace SerialBinaryLogger
 {
@@ -26,6 +27,10 @@ namespace SerialBinaryLogger
             UpdateCOMList();
 
             onWrite += new TOnWrite(RealUpdateStatusWrite);
+
+            Version version = Assembly.GetEntryAssembly().GetName().Version;
+
+            this.Text = "Serial Binary Logger v" + version.ToString();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
