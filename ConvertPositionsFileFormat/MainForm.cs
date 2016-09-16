@@ -35,6 +35,7 @@ namespace ConvertPositionsFileFormat
             double  DeltaTime;
             String  PathFileInput;
             String  PathFileOutput;
+            String  MessageError = "";
 
 
             PathFileInput   = tbPathFile2Convert.Text;
@@ -44,9 +45,9 @@ namespace ConvertPositionsFileFormat
             TimeOfWeekStart = double.Parse(tbTimeOfWeekStart.Text);
             DeltaTime       = double.Parse(tbDeltaTime.Text);
 
-            if (FileParser.ConvertTNTFile2ASSISTPos(PathFileInput, PathFileOutput, WeekNumber, TimeOfWeekStart, DeltaTime) == false)
+            if (FileParser.ConvertTNTFile2ASSISTPos(PathFileInput, PathFileOutput, WeekNumber, TimeOfWeekStart, DeltaTime,ref MessageError) == false)
             {
-                WriteInfo("FAILED CONVERSION");
+                WriteInfo("FAILED CONVERSION! ERROR: "+ MessageError);
             }
             else
             {

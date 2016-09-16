@@ -166,14 +166,16 @@ namespace ConvertPositionsFileFormat
             return returnString;
         }
 
-        public static bool ConvertTNTFile2ASSISTPos(String PathInput,String PathOutput,int WeekNumber,double timeofWeekStart,double deltaTime)
+        public static bool ConvertTNTFile2ASSISTPos(String PathInput,String PathOutput,int WeekNumber,double timeofWeekStart,double deltaTime, ref String MessageError)
         {
+            String lineFile         = "";
+            String lineFileOutput   = "";
             try
             {
+                MessageError = "";
+
                 StreamReader sr = new StreamReader(PathInput);
                 StreamWriter sw = new StreamWriter(PathOutput);
-                String lineFile = "";
-                String lineFileOutput = "";
                 Position extractedPos = new Position();
                 double timeOfWeek = timeofWeekStart;
 
@@ -210,6 +212,7 @@ namespace ConvertPositionsFileFormat
             }
             catch(Exception exc)
             {
+                MessageError = exc.Message;
                 return false;
             }
         }
