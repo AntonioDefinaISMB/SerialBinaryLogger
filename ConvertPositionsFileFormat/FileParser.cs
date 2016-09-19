@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLLCommonTypes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -10,15 +11,15 @@ namespace ConvertPositionsFileFormat
     {
         LATITUDE,
         LONGITUDE,
-        TOW,
-        WN,
-        MAXFIELD,
+        HEIGHT,
         DIRECTION,
         SPEED,
         FIXINDICATOR,
         NUMBEROFSAT,
         HDOP,
-        HEIGHT,
+        TOW,
+        WN,
+        MAXFIELD
     }
 
     public enum PositionFieldExtracted
@@ -27,20 +28,6 @@ namespace ConvertPositionsFileFormat
         LONGITUDE,
         LATITUDE,
         MAXFIELD
-    }
-
-    public class Position
-    {
-        public double   Latitude;
-        public double   Longitude;
-        public double   Height;
-        public double   TimeOfWeek;
-        public int      Speed           = 10;
-        public int      WeekNumber      = 1910;
-        public int      Direction       = 0;
-        public int      NumberOfSat     = 6;
-        public int      HDOP            = 1;
-        public int      FixIndicator    = 1;
     }
 
     public static class FileParser
@@ -131,7 +118,7 @@ namespace ConvertPositionsFileFormat
                         singleFieldString = position.NumberOfSat.ToString();
                         break;
                     case PositionFieldOutput.DIRECTION:
-                        singleFieldString = position.Direction.ToString();
+                        singleFieldString = position.Direction.ToString("F2", CultureInfo.InvariantCulture);
                         break;
                     case PositionFieldOutput.HDOP:
                         singleFieldString = position.HDOP.ToString();
@@ -176,7 +163,8 @@ namespace ConvertPositionsFileFormat
 
                 StreamReader sr = new StreamReader(PathInput);
                 StreamWriter sw = new StreamWriter(PathOutput);
-                Position extractedPos = new Position();
+                Position extractedPos       = new Position();
+                Position previousPosition   = null;
                 double timeOfWeek = timeofWeekStart;
 
                 while (sr.EndOfStream == false)
@@ -195,13 +183,24 @@ namespace ConvertPositionsFileFormat
 
                             timeOfWeek += deltaTime;
 
-                            lineFileOutput = ConvertPos2String(extractedPos);
-
-                            if (lineFileOutput != null && lineFileOutput.Length > 0)
+                            if (previousPosition != null)
                             {
-                                sw.Write(lineFileOutput);
-                                sw.Flush();
+                                previousPosition.Direction = DLLConversionGeographicData.ConversionGPS.GetHeading(previousPosition, extractedPos);
+
+                                lineFileOutput = ConvertPos2String(previousPosition);
+
+                                if (lineFileOutput != null && lineFileOutput.Length > 0)
+                                {
+                                    sw.Write(lineFileOutput);
+                                    sw.Flush();
+                                }
                             }
+                            
+                            if(previousPosition==null)
+                            {
+                                previousPosition = new Position();
+                            }
+                            previousPosition.Copy(extractedPos);
                         }
                     }
                 }

@@ -79,6 +79,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DLLCommonTypes\DLLCommonTypes.csproj">
+      <Project>{38a3269b-b282-4047-84df-c4192cd801d4}</Project>
+      <Name>DLLCommonTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLLCoordinatesUtilities\DLLCoordinatesUtilities.csproj">
+      <Project>{fe826fa8-07bc-4916-a1a9-1170240108fc}</Project>
+      <Name>DLLCoordinatesUtilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

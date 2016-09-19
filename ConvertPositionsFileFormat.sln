@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertPositionsFileFormat", "ConvertPositionsFileFormat\ConvertPositionsFileFormat.csproj", "{9A6C5C16-44D9-4E36-9AFF-0172EC66E21F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLCommonTypes", "DLLCommonTypes\DLLCommonTypes.csproj", "{38A3269B-B282-4047-84DF-C4192CD801D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLLCoordinatesUtilities", "DLLCoordinatesUtilities\DLLCoordinatesUtilities.csproj", "{FE826FA8-07BC-4916-A1A9-1170240108FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9A6C5C16-44D9-4E36-9AFF-0172EC66E21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A6C5C16-44D9-4E36-9AFF-0172EC66E21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A6C5C16-44D9-4E36-9AFF-0172EC66E21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38A3269B-B282-4047-84DF-C4192CD801D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A3269B-B282-4047-84DF-C4192CD801D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A3269B-B282-4047-84DF-C4192CD801D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A3269B-B282-4047-84DF-C4192CD801D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE826FA8-07BC-4916-A1A9-1170240108FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE826FA8-07BC-4916-A1A9-1170240108FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE826FA8-07BC-4916-A1A9-1170240108FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE826FA8-07BC-4916-A1A9-1170240108FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
